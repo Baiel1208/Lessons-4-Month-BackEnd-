@@ -4,9 +4,10 @@ pip install virtualenv - Установить virtualenv
 python -m venv venv - Запустить окружение 
 venv\Scripts\activate - Активация win
 
-git checkout -b  name(hw1) Создать ветку
-git checkout  name(master) Переход на другую ветку
-git merge name(hw1) мерджить
+git checkout -b  name(hw1) - Создать ветку
+git checkout  name(master) - Переход на другую ветку
+git merge name(hw1) - мерджить
+python manage.py test - Тестить views
 
 
 # Django
