@@ -26,4 +26,6 @@ git remote -v - origin  узнать ключ
 
 git rm <file> --cached - удаление файла из репозитория
 git rm -rf <folder> --cached - удаление папки из репозитория
+git commit -m "Удален файл example.txt"
+git push origin ветка
 """

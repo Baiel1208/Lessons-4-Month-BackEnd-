@@ -5,6 +5,6 @@ venv
 __pycache__/
 */__pycache__/
 */*__pycache__/
-dp.sqlite3
-GitHub.txt
 db.sqlite3
+GitHub.txt
+Commands.py

@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     # apps
     'blog',
     'users',
+    'examples',
 
     # libs 
 ]
