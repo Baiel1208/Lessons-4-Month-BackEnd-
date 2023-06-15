@@ -3,6 +3,7 @@
 pip install virtualenv - Установить virtualenv
 python -m venv venv - Запустить окружение 
 venv\Scripts\activate - Активация win
+source venv/bin/activate 
 
 git checkout -b  name(hw1) - Создать ветку
 git checkout  name(master) - Переход на другую ветку

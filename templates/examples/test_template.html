@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}
+    Это тестовая страница
+{% endblock %}
+{% block content %}
+
+
+    <h1>Первый шаблон</h1>
+    <hr>
+    {#Отображаем список цкликом#}
+    {{ my_list }}
+    <br>
+
+    {#Отображаем список циклом#}
+    <ul>
+        {% for elem in my_list %}
+            <li>{{ elem }}</li>
+        {% endfor %}
+    </ul>
+
+    {% if 4 in my_list %}
+        <p>4 есть в списке</p>
+    {% elif 5 in my_list %}
+        <p>5 есть в списке</p>
+    {% else %}
+        <p>Ничего нет</p>
+    {% endif %}
+
+{% endblock %}

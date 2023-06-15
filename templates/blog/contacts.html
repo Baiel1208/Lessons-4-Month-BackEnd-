@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+
+{% block title %}
+    Контакты 
+{% endblock %}
+
+{% block content %}
+<h1>Связь с нами </h1>
+<hr>
+<a href="{% url 'index-page' %}">Главная страница</a><br>
+<a href="{% url 'about-page' %}">О нас</a><br>
+{% endblock %}
