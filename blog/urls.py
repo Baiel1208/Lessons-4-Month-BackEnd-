@@ -1,13 +1,22 @@
 from django.urls import path
 from blog import views
+from django.views.generic import TemplateView
 
 
 urlpatterns = [
-    path("", views.index, name="index-page"),
+    path("", views.IndexListViews.as_view(), name="index-page"),
+
     path("contacts/", views.get_contacts, name="contacts-page"),
-    path("about/", views.get_about, name="about-page"),
-    path("post/<str:pk>", views.get_post_detail, name="post-detail"),
-# HW4
-    path("post/update/<str:pk>", views.get_post_update, name="post-update"),
-    path("post/delete/<str:pk>", views.get_post_delete, name="post-delete"),
+
+    path("about/", TemplateView.as_view(template_name="blog/about.html"), name="about-page"),
+
+    path("post/<int:pk>", views.PostDetailViews.as_view(), name="post-detail"),
+
+    path("post/update/<int:pk>", views.PostUpdateViews.as_view(), name="post-update"),
+
+    path("post/delete/<int:pk>", views.PostDeleteView.as_view(), name="post-delete"),
+
+    path("post/create", views.PostCreateViews.as_view(), name="post-create"),
+
+    
 ]

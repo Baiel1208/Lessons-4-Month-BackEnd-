@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block title %}
+    Создание записи
+{% endblock %}
+{% block content %}
+    <form action="" method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Создать запись</button>
+    </form>
+{#    <form action="" method="post">#}
+{#    {% csrf_token %}#}
+{#        <input type="text" value="{{ post.title }}" name="title"><br>#}
+{#        <textarea name="content" id="content" cols="30" rows="10"></textarea><br>#}
+{#        <input type="submit" value="Создать запись">#}
+{#    </form>#}
+{% endblock %}

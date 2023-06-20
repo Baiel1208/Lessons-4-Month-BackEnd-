@@ -9,7 +9,7 @@ class BlogTestCase(TestCase):
         self.post = Post.objects.create(title="Test", content="Test")
 
 # HW4
-    def test_post_update(self):
+    def test_post_update(self): 
         url = reverse("post-update", kwargs={'pk': self.post.id})
         response = self.client.get(url)
         self.assertTemplateUsed(response, 'blog/post_update.html')

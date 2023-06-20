@@ -10,8 +10,19 @@
         <h5 class="card-title">{{ post.title }}</h5>
         <h6 class="card-subtitle mb-2 text-body-secondary">{{ post.created }}</h6>
         <p class="card-text">{{ post.content }}</p>
+{% comment %} HW5 {% endcomment %}
+{% if user.is_superuser %}
+        <form action="{% url 'post-update' post.id %}" class="card-link"></a>
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Редактировать</button>
+        </form>
+        {% comment %} <a href="{% url 'post-update' post.id %}" class="card-link">Редактировать</a> {% endcomment %}
 
-        <a href="" class="card-link">Редактировать</a>
+        <form action="{% url 'post-delete' post.id %}" method="get">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Удалить запись</button>
+        </form>
+        {% endif %}
     </div>
 </div>
 
