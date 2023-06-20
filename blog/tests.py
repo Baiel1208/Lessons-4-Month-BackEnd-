@@ -22,6 +22,10 @@ class BlogTestCase(TestCase):
         self.assertTemplateUsed(response, 'blog/post_delete.html')
         self.assertEqual(response.status_code, 200)
 
+def test_get_post_detail(self):
+        responce = self.client.get(reverse('post-detail', kwargs={'pk': self.post.id}))
+        self.assertTemplateUsed(responce, 'blog/post_detail.html')
+        self.assertEqual(200, responce.status_code)
 
     # def test_index(self):
     #     response = self.client.get(reverse("index-page"))
