@@ -1,6 +1,6 @@
 <form method="POST" action="{% url 'post-delete' pk=post.pk %}">
-    {% csrf_token %}
-    <p>Вы уверены, что хотите удалить этот пост: "{{ post.title }}"?</p>
-    <button type="submit">Да</button>
-    <a href="{% url 'post-detail' pk=post.pk %}">Нет</a>
-  </form>
+  {% csrf_token %}
+  <p>Вы уверены, что хотите удалить этот пост: "{{ post.title }}"?</p>
+  <button type="submit">Да</button>
+  <a href="{% url 'post-detail' pk=post.pk %}">Нет</a>
+</form>

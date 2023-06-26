@@ -36,6 +36,7 @@ class PostDetailViews(generic.DetailView):
         if form.is_valid():
             pre_saved_comment = form.save(commit=False)
             pre_saved_comment.post = post
+            pre_saved_comment.name = request.user.username
             pre_saved_comment.save()
         return redirect(reverse("post-detail", kwargs={"pk": pk}))
 
