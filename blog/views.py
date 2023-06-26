@@ -1,8 +1,10 @@
-from django.shortcuts import render
-from blog.models import Post
-from django.views import generic
+from django.shortcuts import render, get_object_or_404, redirect
 from django.urls import reverse_lazy
+from django.urls import reverse
 
+from blog.forms import CommentForm, PostForm
+from blog.models import Post, Comment
+from django.views import generic
 
 # CRUD = Create, Retrieve, Update, Delete
 
@@ -20,7 +22,23 @@ class PostDetailViews(generic.DetailView):
     model = Post
     context_object_name = "post"
     template_name = "blog/post_detail.html"
-    
+    extra_context = {"form": CommentForm()}
+
+
+    # def get_context_data(self, **kwargs):
+    #     context = super().get_context_data(**kwargs)
+    #     context["form"] = CommentForm()
+    #     return context
+
+    def post(self, request, pk):
+        post = Post.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            pre_saved_comment = form.save(commit=False)
+            pre_saved_comment.post = post
+            pre_saved_comment.save()
+        return redirect(reverse("post-detail", kwargs={"pk": pk}))
+
 
 def index(request):
     posts = Post.objects.all()
@@ -40,9 +58,16 @@ def get_post_detail(request, pk):
 
 class PostCreateViews(generic.CreateView):
     model = Post
+    form_class = PostForm
     template_name = "blog/post_create.html"
-    fields = ['title', 'content','cover']
+    # fields = ['title', 'content','cover', "status"]
     success_url = reverse_lazy("index-page")
+
+
+    # def post(self, request, pk):
+	#     post = Post.objects.get(pk=pk)
+    #     form = PostForm(request.POST)
+    #     return redirect("post-create", pk)
 
 # def create_post(request):
 #     if request.method == "POST":
@@ -60,7 +85,6 @@ class PostCreateViews(generic.CreateView):
 # _________________Delete_________________________
 class PostDeleteView(generic.DeleteView):
     model = Post
-
     success_url = reverse_lazy("index-page")
 
 
@@ -74,13 +98,15 @@ class PostUpdateViews(generic.UpdateView):
     fields = ["title", "content"]
     success_url = reverse_lazy("index-page")
 
+# ________________End Update______________________
+
 
 def get_contacts(request):
     return render(request, "blog/contacts.html")
 
 
-def get_about(request):
-    return render(request, "blog/about.html")
+# def get_about(request):
+#     return render(request, "blog/about.html")
 
 
 def post_update(request, pk):

@@ -4,13 +4,13 @@
 {% endblock %}
 {% block content %}
 
-<div class="card mx-auto" style="width: 35rem;">
+<div class="card mx-auto" style="width: 45rem;">
     <img src="{{ post.cover.url }}" class="card-img-top" alt="photo type">
     <div class="card-body">
         <h5 class="card-title">{{ post.title }}</h5>
-        <h6 class="card-subtitle mb-2 text-body-secondary">{{ post.created }}</h6>
+        <h6 class="card-subtitle mb-2 text-body-secondary">{{ post.created }} - {{ post.get_category_display }}</h6>
         <p class="card-text">{{ post.content }}</p>
-{% comment %} HW5 {% endcomment %}
+
 {% if user.is_superuser %}
         <form action="{% url 'post-update' post.id %}" class="card-link"></a>
             {% csrf_token %}
@@ -25,5 +25,38 @@
         {% endif %}
     </div>
 </div>
+
+<form action="" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="hidden" name="author" value="{{ request.user.username }}">
+    <button type="submit" class="btn btn-success">Прокомментировать</button>
+    </form>
+
+{#    <form action="" method="post">#}
+{#    {% csrf_token %}#}
+{#        #}
+{#        <label for="username">Введите имя</label>#}
+{#        <input type="text" name="name" id="username"><br>#}
+{#        <label for="text">Введите комментарий</label>#}
+{#        <input type="text" name="comment" id="text" style="height: 100px;"><br>#}
+{#        <button type="submit" class="btn btn-success">Прокомментировать</button>#}
+{#    </form>#}
+
+    {% for comment in post.post_comment.all %}
+    <div class="card mx-auto">
+        <div class="card-header">
+            {{ comment.name }}
+        </div>
+        <div class="card-body">
+            <blockquote class="blockquote mb-0">
+                <p>{{ comment.comment }}</p>
+                <footer class="blockquote-footer">{{ comment.created }}
+                </footer>
+            </blockquote>
+        </div>
+    </div>
+        <br>
+    {% endfor %}
 
 {% endblock %}
