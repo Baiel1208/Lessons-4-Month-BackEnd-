@@ -11,7 +11,7 @@ class RegisterViews(generic.CreateView):
     success_url = reverse_lazy("index-page")
 
 
-    def register(request):
+    def post(self,request):
         if request.method == "POST":
             user_form =UserRegistrationForm(request.POST)
             if user_form.is_valid():
