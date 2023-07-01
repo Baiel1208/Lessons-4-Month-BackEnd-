@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'users',
     'examples',
 
-    # libs 
+    # libs
+    "rest_framework",
+    "drf_yasg",
+    'drf_yasg2',
 ]
 
 MIDDLEWARE = [
@@ -129,7 +132,7 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/4.2/howto/static-files/
 
 STATIC_URL = 'static/'
-MEDIA_URL = 'Media/'
+MEDIA_URL = 'media/'
 MEDIA_ROOT = BASE_DIR / 'media/'
 
 # Default primary key field type
@@ -146,3 +149,5 @@ LOGIN_REDIRECT_URL = "/"
 # EMAIL_HOST_PASSWORD = ''
 # EMAIL_USE_TLS = True
 EMAIL_BACKEND = "django.core.mail.backends.console.EmailBackend"
+
+AUTH_USER_MODEL = "users.GeekUser"

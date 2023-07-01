@@ -16,7 +16,7 @@ pip install django - Установить Django
 
 python manage.py createsuperuser - создаёт пользователя
 
-python manage.py makemigrations и python3 manage.py migrate. Создать базу данных, соответствующую вашим моделям 
+python3 manage.py makemigrations и python3 manage.py migrate. Создать базу данных, соответствующую вашим моделям 
 
 django-admin startproject core . -  Создать новый проект(ОДИН РАЗ) 
 

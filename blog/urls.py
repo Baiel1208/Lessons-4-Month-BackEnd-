@@ -18,5 +18,7 @@ urlpatterns = [
 
     path("post/create", views.PostCreateViews.as_view(), name="post-create"),
 
-    
+    path("api/posts/list", views.PostListAPIView.as_view(), name="post-list-api"),
+    path("api/posts/<int:id>", views.PostDetailAPIView.as_view(), name="post-detail-api"),
+
 ]
