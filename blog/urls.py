@@ -1,3 +1,4 @@
+from collections import UserList
 from django.urls import path
 from blog import views
 from django.views.generic import TemplateView
@@ -19,6 +20,12 @@ urlpatterns = [
     path("post/create", views.PostCreateViews.as_view(), name="post-create"),
 
     path("api/posts/list", views.PostListAPIView.as_view(), name="post-list-api"),
-    path("api/posts/<int:id>", views.PostDetailAPIView.as_view(), name="post-detail-api"),
+
+    path("api/posts/<int:id>", views.PostDetailAPIView.as_view(),
+    name="post-detail-api"),
+
+    path("api/users/list", views.UsersListAPIView.as_view(), name="users-list-api"),
+
+    path("api/users/<int:id>", views.UsersDetailAPIView.as_view(), name="users-detail-api"),
 
 ]

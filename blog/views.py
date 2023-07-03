@@ -1,12 +1,32 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, redirect
 from django.urls import reverse_lazy
 from django.urls import reverse
 
 from blog.forms import CommentForm, PostForm
-from blog.models import Post, Comment
+from blog.models import Post, Comment 
+from users.models import GeekUser
 from django.views import generic
 from rest_framework import generics
-from blog.serializers import PostListSerializer, PostDetailSerializer
+from blog.serializers import CommentSerializer, PostListSerializer, PostDetailSerializer, UsersListSerializer, UsersDetailSerializer
+
+
+# hw8
+class UsersListAPIView(generics.ListAPIView):
+    serializer_class = UsersListSerializer
+    queryset = GeekUser.objects.all()
+
+
+class UsersDetailAPIView(generics.RetrieveAPIView):
+    serializer_class = UsersDetailSerializer
+    queryset = GeekUser.objects.all()
+    lookup_field = "id"
+
+
+class CommentAPIView(generics.ListAPIView):
+    serializer_class = CommentSerializer
+
+    def get_queryset(self):
+        return Comment.objects.filter(post=self.kwargs['post'])
 
 
 class PostListAPIView(generics.ListAPIView):
